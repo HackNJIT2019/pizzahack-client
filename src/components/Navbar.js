@@ -54,7 +54,7 @@ function Navbar() {
           </IconButton> */}
           <FastfoodIcon className={classes.icon} />
           <Typography variant="h6" className={classes.title} noWrap>
-            Pizza Hack
+            TalkinPizza
           </Typography> 
             <div>
               <IconButton

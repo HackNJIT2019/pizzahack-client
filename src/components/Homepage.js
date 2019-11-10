@@ -3,6 +3,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import FastfoodIcon from '@material-ui/icons/Fastfood';
 import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -16,6 +17,7 @@ import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import Navbar from '../components/Navbar';
 import axios from 'axios';
+import joes from '../images/joes.jpg';
 
 function Copyright() {
   return (
@@ -148,12 +150,12 @@ class Homepage extends React.Component{
                     <div className={classes.heroContent}>
                     <Container maxWidth="sm">
                         <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                        Order
+                        Find Great Pizza
                         </Typography>
                         <Typography variant="h5" align="center" color="textSecondary" paragraph>
                         Welcome {' '} {this.state.user.name}
                         <Typography variant="h5" align="center" color="textSecondary" paragraph>
-                        {this.state.restaurant.name}
+                        {/* {this.state.restaurant.name} */}
                         </Typography>
                         </Typography>
                         <div className={classes.heroButtons}>
@@ -190,8 +192,8 @@ class Homepage extends React.Component{
                     <Container className={classes.cardGrid} maxWidth="md">
                     {/* End hero unit */}
                     <Grid container spacing={4}>
-                        {this.state.cards.map(card => (
-                        <Grid item key={card} xs={12} sm={6} md={4}>
+                        {/* {this.state.cards.map((card, key) => (
+                        <Grid item key={this.state.restaurant.menu.items.itemName} xs={12} sm={6} md={4}>
                             <Card className={classes.card}>
                             <CardMedia
                                 className={classes.cardMedia}
@@ -216,7 +218,107 @@ class Homepage extends React.Component{
                             </CardActions>
                             </Card>
                         </Grid>
-                        ))}
+                        ))} */}
+                        <Card className={classes.card}>
+                            <CardActionArea>
+                                <CardMedia
+                                className={classes.media}
+                                image="/images/joes.jpg"
+                                title="Joe's Pizza"
+                                />
+                                <CardContent>
+                                <Typography gutterBottom variant="h5" component="h2">
+                                    Joe's Pizza
+                                </Typography>
+                                <Typography variant="body2" color="textSecondary" component="p">
+                                    The Best Pizza in all of Mumbai!!!
+                                </Typography>
+                                </CardContent>
+                            </CardActionArea>
+                            <CardActions>
+                                <Button size="small" color="primary">
+                                View Menu
+                                </Button>
+                                {/* <Button size="small" color="primary">
+                                Learn More
+                                </Button> */}
+                            </CardActions>
+                        </Card>
+                        <Card className={classes.card}>
+                            <CardActionArea>
+                                <CardMedia
+                                className={classes.media}
+                                //image="/images/joes.jpg"
+                                title="Little Caesar's"
+                                />
+                                <CardContent>
+                                <Typography gutterBottom variant="h5" component="h2">
+                                    Little Caesar's
+                                </Typography>
+                                <Typography variant="body2" color="textSecondary" component="p">
+                                    It's Hot and it's Ready!!!
+                                </Typography>
+                                </CardContent>
+                            </CardActionArea>
+                            <CardActions>
+                                <Button size="small" color="primary">
+                                View Menu
+                                </Button>
+                                {/* <Button size="small" color="primary">
+                                Learn More
+                                </Button> */}
+                            </CardActions>
+                        </Card>
+                        <Card className={classes.card}>
+                            <CardActionArea>
+                                <CardMedia
+                                className={classes.media}
+                                //image="/images/joes.jpg"
+                                title="Basille's Pizza"
+                                />
+                                <CardContent>
+                                <Typography gutterBottom variant="h5" component="h2">
+                                    Basille's Pizza
+                                </Typography>
+                                <Typography variant="body2" color="textSecondary" component="p">
+                                    Can More Money Buy Better Pizza?
+                                </Typography>
+                                </CardContent>
+                            </CardActionArea>
+                            <CardActions>
+                                <Button size="small" color="primary">
+                                View Menu
+                                </Button>
+                                {/* <Button size="small" color="primary">
+                                Learn More
+                                </Button> */}
+                            </CardActions>
+                        </Card>
+                        <Card className={classes.card}>
+                            <CardActionArea>
+                                <CardMedia
+                                className={classes.media}
+                                //image="/images/joes.jpg"
+                                title="Dollar Pizza"
+                                />
+                                <CardContent>
+                                <Typography gutterBottom variant="h5" component="h2">
+                                    $1 Dollar Pizza
+                                </Typography>
+                                <Typography variant="body2" color="textSecondary" component="p">
+                                    Come on Over to Dollar Pizza!!!
+                                </Typography>
+                                </CardContent>
+                            </CardActionArea>
+                            <CardActions>
+                                <Button size="small" color="primary">
+                                View Menu
+                                </Button>
+                                {/* <Button size="small" color="primary">
+                                Learn More
+                                </Button> */}
+                            </CardActions>
+                        </Card>
                     </Grid>
                     </Container>
                 </main>
