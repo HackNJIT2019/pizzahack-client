@@ -345,7 +345,7 @@ class Homepage extends React.Component{
                 <div className={classes.heroContent}>
                   <Container maxWidth="sm">
                     <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                      Order
+                      Discover Great Pizza
                     </Typography>
                     <Typography variant="h5" align="center" color="textSecondary" paragraph>
                       Welcome {' '} {this.state.user.name}
@@ -357,7 +357,7 @@ class Homepage extends React.Component{
                       <Grid container spacing={2} justify="center">
                         <Grid item>
                           <Button variant="contained" color="primary">
-                            Menu
+                            Order
                           </Button>
                         </Grid>
                         <Grid item>
