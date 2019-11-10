@@ -16,7 +16,7 @@ const Menu = [
     pathname: "/wizard"
   },
   {
-    label: "Cards",
+    label: "Food Menu",
     pathname: "/cards"
   },
   {

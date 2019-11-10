@@ -63,9 +63,8 @@ const styles = theme => ({
     },
 });
 
-class Signin extends React.Component{
-    constructor(props)
-    {
+class Signin extends React.Component {
+    constructor(props) {
         super();
         this.state = {
             email: "",
@@ -109,7 +108,7 @@ class Signin extends React.Component{
         if (this.state.redirect) {
             //debugger
             return(
-                <Redirect to="/main" />
+                <Redirect to="/home" />
             )
         }
     //const { classes } = this.props;
