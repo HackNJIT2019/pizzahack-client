@@ -142,7 +142,7 @@ class Topbar extends Component {
                     <React.Fragment>
                       <div className={classes.productLogo}>
                         <Typography>
-                          A material UI Template
+                          Fresh Out The Oven
                         </Typography>
                       </div>
                       <div className={classes.iconContainer}>
