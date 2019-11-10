@@ -19,6 +19,7 @@ import Navbar from '../components/Navbar';
 import axios from 'axios';
 import joes from '../images/joes.jpg';
 import Order from './Order'
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 function Copyright() {
   return (
@@ -244,6 +245,7 @@ class Homepage extends React.Component{
                       <Button size="small" color="primary">
                         Add to Cart
                       </Button>
+                      <ShoppingCartIcon/>
                     </CardActions>
                     <CardActionArea>
                       <CardMedia
@@ -267,6 +269,7 @@ class Homepage extends React.Component{
                       <Button size="small" color="primary">
                         Add to Cart
                       </Button>
+                      <ShoppingCartIcon/>
                     </CardActions>
                     <CardActionArea>
                       <CardMedia
@@ -290,6 +293,7 @@ class Homepage extends React.Component{
                       <Button size="small" color="primary">
                         Add to Cart
                       </Button>
+                      <ShoppingCartIcon/>
                     </CardActions>
                     <CardActionArea>
                       <CardMedia
@@ -313,6 +317,7 @@ class Homepage extends React.Component{
                       <Button size="small" color="primary">
                         Add to Cart
                       </Button>
+                      <ShoppingCartIcon/>
                     </CardActions>
                     <CardActionArea>
                       <CardMedia
@@ -336,6 +341,7 @@ class Homepage extends React.Component{
                       <Button size="small" color="primary">
                         Add to Cart
                       </Button>
+                      <ShoppingCartIcon/>
                     </CardActions>
                     <CardActionArea>
                       <CardMedia
@@ -359,6 +365,7 @@ class Homepage extends React.Component{
                       <Button size="small" color="primary">
                         Add to Cart
                       </Button>
+                      <ShoppingCartIcon/>
                     </CardActions>
                   </Card>
                 </Grid>
