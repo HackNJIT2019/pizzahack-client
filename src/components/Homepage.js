@@ -68,30 +68,25 @@ const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 class Homepage extends React.Component{
     constructor(props) {
-        super();
-        this.props = {
+        super(props);
+        this.state = {
+            name: this.props.profile.name,
+            email: this.props.profile.email,
+            contactno : this.props.profile.contanco
         }
+    }
 
+    componentDidMount = () => {
+        const props_ = this.props
+        this.setState({
+            props_
+        })
     }
     render() {
         const {classes} = this.props
         return (
             <React.Fragment>
                 <Navbar />
-              {/* <CssBaseline />
-              <AppBar justifyContent="flex-end">
-                <Toolbar>
-                  <FastfoodIcon className={classes.icon} />
-                  <Typography variant="h6" color="inherit" noWrap>
-                    Pizza Hack
-                  </Typography>
-                  <div>
-                    <Button variant="outlined" color="inherit" size="small">
-                        log out
-                    </Button>
-                  </div> 
-                </Toolbar>
-              </AppBar> */}
               <main>
                 {/* Hero unit */}
                 <div className={classes.heroContent}>
@@ -100,9 +95,7 @@ class Homepage extends React.Component{
                       Order
                     </Typography>
                     <Typography variant="h5" align="center" color="textSecondary" paragraph>
-                      Something short and leading about the collection below—its contents, the creator, etc.
-                      Make it short and sweet, but not too short so folks don&apos;t simply skip over it
-                      entirely.
+                      Welcome {' '} {this.state.name}
                     </Typography>
                     <div className={classes.heroButtons}>
                       <Grid container spacing={2} justify="center">

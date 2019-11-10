@@ -18,6 +18,8 @@ import ReactPhoneInput from 'react-phone-input-mui';
 //var MuiPhoneNumber = require("material-ui-phone-number")
 import axios from 'axios';
 import {Redirect} from 'react-router-dom'
+import Cookies from 'universal-cookie';
+
 
 function Copyright() {
   return (
@@ -59,19 +61,31 @@ const styles = theme => ({
 
 
 class Signup extends React.Component{
-  constructor(props)
-  {
+  constructor(props) {
       super();
       this.state = {
-        email: "",
-        password:"",
-        address: "",
-        cash: false,
-        contactno: "",
-        name: "",
-        redirect: false,
-        error: ""
-    };
+        user: {
+          email: "",
+          password:"",
+          address: "",
+          cash: false,
+          contactno: "",
+          name: "",
+          redirect: false,
+          error: ""
+        },
+        isAuthenticated: false
+      };
+  }   
+
+  componentDidMount() {
+    const auth = sessionStorage.getItem("pizzaAuth");
+    if (auth) {
+      this.setState({
+        isAuthenticated: true
+      });
+      return;
+    }
   }
 
   handleChange = event => ({target}) => {
@@ -79,7 +93,8 @@ class Signup extends React.Component{
   }
 
   handleSubmit = async (event) => {
-    const apiLink = "http://192.168.43.193:3000/users/signup"
+    const cookies = new Cookies();
+    const apiLink = "http://pizzahack.azurewebsites.net/users/signup"
     event.preventDefault();
     try {
       let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -101,14 +116,17 @@ class Signup extends React.Component{
             console.log("Sign up response   ", res)
             if(!res.data.success && res.data.err==='User already exists') {
               this.setState({
-                redirect: true
+                //redirect: true,
+                isAuthenticated: true
               })
             }
             else {
               this.setState({
-                redirect: true,
-                user: res.data
+                //redirect: true,
+                isAuthenticated: true,
+                //user: res.data
               })
+              //cookies.set('token', res.data.token, { path: '/' });
             }
           }
       }
@@ -124,9 +142,9 @@ class Signup extends React.Component{
   }
 
   render() {
-    if (this.state.redirect) {
+    if (this.state.isAuthenticated) {
       return(
-        <Redirect to={"/signin"} />
+        <Redirect to={"/home"} />
       )
     }
     //const { classes } = this.props;

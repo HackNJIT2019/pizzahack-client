@@ -19,7 +19,8 @@ import { Link, withRouter } from 'react-router-dom';
 //var MuiPhoneNumber = require("material-ui-phone-number")
 import axios from 'axios';
 import { Redirect } from 'react-router-dom'
-import pizzaBox from '../images/pizzaBox.jpg';
+import Cookies from 'universal-cookie';
+import Homepage from './Homepage';
 
 function Copyright() {
   return (
@@ -70,15 +71,32 @@ class Signin extends React.Component {
             email: "",
             password:"",
             redirect: false,
+            isAuthenticated: false,
+            profile: {}
         };
     }
+
+    // componentDidMount() {
+    //     const auth = sessionStorage.getItem("pizzaAuth");
+    //     if (auth) {
+    //       this.setState({
+    //         isAuthenticated: true
+    //       });
+    //     } 
+    //     else {
+    //       this.setState({
+    //         isAuthenticated: false
+    //       });
+    //     }
+    // }
 
     handleChange = event => ({target}) => {
         this.setState({[event]: target.value});
     }
-
+4
     handleSubmit = async (event) => {
-        const apiLink = "http://192.168.43.193:3000/users/login"
+        const cookies = new Cookies();
+        const apiLink = "http://pizzahack.azurewebsites.net/users/login"
         event.preventDefault();
         let credentials = {
           email: this.state.email,
@@ -91,8 +109,11 @@ class Signin extends React.Component {
         }
         else {
             this.setState({
-            redirect: true,
+            //redirect: true,
+            isAuthenticated: true,
+            profile: res.data.user
             })
+            cookies.set('token', res.data.token, { path: '/home' });
           console.log("Successful attempt! ")
         }
     }
@@ -105,10 +126,13 @@ class Signin extends React.Component {
 
     render() {
         //const {  }
-        if (this.state.redirect) {
+        if (this.state.isAuthenticated) {
             //debugger
             return(
-                <Redirect to="/home" />
+                <Homepage profile={this.state.profile}/>
+                // <div>
+                //    Welcome, {this.state.profile.name}
+                // </div>
             )
         }
     //const { classes } = this.props;
