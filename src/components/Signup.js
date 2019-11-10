@@ -16,6 +16,8 @@ import withStyles from '@material-ui/styles/withStyles';
 import { Link, withRouter } from 'react-router-dom';
 import ReactPhoneInput from 'react-phone-input-mui';
 //var MuiPhoneNumber = require("material-ui-phone-number")
+import axios from 'axios';
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -54,7 +56,62 @@ const styles = theme => ({
   },
 });
 
+
 class Signup extends React.Component{
+  constructor(props)
+  {
+      super();
+      this.state = {
+        email: "",
+        password:"",
+        address: "",
+        contactno: "",
+        name: "",
+        signedUp: false,
+        error: ""
+    };
+  }
+
+  handleChange = event => ({target}) => {
+    this.setState({[event]: target.value});
+  }
+
+  handleSubmit = async (event) => {
+    const apiLink = "192.168.43.193:3000/users/signup"
+    event.preventDefault();
+    try {
+      let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      if(this.state.name === 0 || this.state.contactno.length === 0 || this.state.password.length === 0 || this.state.email.length === 0 || !re.test(this.state.email)) {
+          this.setState({
+              error:'Missing proper credentials.'
+          })
+      } else {
+          let res = await axios.post(apiLink, {
+            email: this.state.email,
+            password: this.state.password,   
+            address: this.state.address,
+            contactno: this.state.contactno,
+            name: this.state.name,
+          })
+          if(res){
+            console.log("RUNNING")
+            this.setState({
+              redirect: true,
+              user: res.data
+            })
+          }
+      }
+  } catch (err) {
+      console.log(err);
+  }
+}
+  
+  handleKeyPress = event => {
+    if(event.key === 'Enter') {
+      this.handleSubmit();
+    }
+  }
+
   render() {
     //const { classes } = this.props;
     const { classes,defaultCountry,} = this.props;
@@ -79,6 +136,7 @@ class Signup extends React.Component{
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  onChange={this.handleChange('email')}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -91,6 +149,7 @@ class Signup extends React.Component{
                   type="password"
                   id="password"
                   autoComplete="current-password"
+                  onChange={this.handleChange('password')}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -103,6 +162,7 @@ class Signup extends React.Component{
                   type="address"
                   id="adress"
                   autoComplete="current-address"
+                  onChange={this.handleChange('address')}
                 />
               </Grid>
               <ReactPhoneInput
@@ -115,9 +175,23 @@ class Signup extends React.Component{
                 inputExtraProps={{
                   margin: 'normal',
                   autoComplete: 'phone',
-                  name: 'custom-username'
+                  name: 'contactno'
                 }}
+                onChange={this.handleChange('contactno')}
               />
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  //required
+                  fullWidth
+                  name="name"
+                  label="Name"
+                  type="name"
+                  id="name"
+                  autoComplete="current-name"
+                  onChange={this.handleChange('name')}
+                />
+              </Grid>
               {/* <Grid item xs={12}>
                 <FormControlLabel
                   control={<Checkbox value="allowExtraEmails" color="primary" />}
@@ -131,6 +205,7 @@ class Signup extends React.Component{
               variant="contained"
               color="primary"
               className={classes.submit}
+              onClick={this.handleSubmit}
             >
               Sign Up
             </Button>

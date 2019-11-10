@@ -14,8 +14,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import withStyles from '@material-ui/styles/withStyles';
 import { Link, withRouter } from 'react-router-dom';
-import ReactPhoneInput from 'react-phone-input-mui';
+// import ReactPhoneInput from 'react-phone-input-mui';
 //var MuiPhoneNumber = require("material-ui-phone-number")
+import axios from 'axios';
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -55,9 +57,48 @@ const styles = theme => ({
 });
 
 class Signin extends React.Component{
-  render() {
+    constructor(props)
+    {
+        super();
+        this.state = {
+            email: "",
+            password:"",
+            signedIn: false,
+        };
+    }
+
+    handleChange = event => ({target}) => {
+        this.setState({[event]: target.value});
+    }
+
+    handleSubmit = async (event) => {
+        const apiLink = "http://192.168.43.193:3000/users/login"
+        event.preventDefault();
+        let credentials = {
+          email: this.state.email,
+          password: this.state.password
+        }
+        let res = await axios.post(apiLink, credentials)
+        if (res) {
+            console.log("good 200")
+          this.setState({
+            signedIn: true,
+          })
+        }
+        else {
+          console.log("Error")
+        }
+    }
+
+    handleKeyPress = event => {
+        if(event.key === 'Enter') {
+          this.handleSubmit();
+        }
+    }
+
+    render() {
     //const { classes } = this.props;
-    const { classes,defaultCountry,} = this.props;
+    const { classes} = this.props;
     return (
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -79,6 +120,7 @@ class Signin extends React.Component{
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  onChange={this.handleChange('email')}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -91,6 +133,7 @@ class Signin extends React.Component{
                   type="password"
                   id="password"
                   autoComplete="current-password"
+                  onChange={this.handleChange('password')}
                 />
               </Grid>
               {/* <Grid item xs={12}>
@@ -106,6 +149,7 @@ class Signin extends React.Component{
               variant="contained"
               color="primary"
               className={classes.submit}
+              onClick={this.handleSubmit}
             >
               Sign In
             </Button>
