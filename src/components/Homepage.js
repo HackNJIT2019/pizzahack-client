@@ -188,34 +188,182 @@ class Homepage extends React.Component{
         if(this.state.redirectOrder){
           return (
             <React.Fragment>
-              <Card className={classes.card}>
-              <CardActionArea>
-                <CardMedia
-                  className={classes.media}
-                  image="/static/images/cards/contemplative-reptile.jpg"
-                  title="Contemplative Reptile"
-                />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    {this.state.restaurant.menu.items[0].itemName}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary" component="p">
-                  {this.state.restaurant.menu.items[0].description}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary" component="p">
-                  {this.state.restaurant.menu.items[0].price}
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-              <CardActions>
-                <Button size="small" color="primary">
-                  Share
-                </Button>
-                <Button size="small" color="primary">
-                  Learn More
-                </Button>
-              </CardActions>
-            </Card>
+              <Navbar>
+                <main>
+                  <div className={classes.heroContent}>
+                    <Container maxWidth="sm">
+                        <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+                        Find Great Pizza
+                        </Typography>
+                        <Typography variant="h5" align="center" color="textSecondary" paragraph>
+                        Welcome {' '} {this.state.user.name}
+                        <Typography variant="h5" align="center" color="textSecondary" paragraph>
+                        {/* {this.state.restaurant.name} */}
+                        </Typography>
+                        </Typography>
+                        <div className={classes.heroButtons}>
+                        <Grid container spacing={2} justify="center">
+                            <Grid item>
+                            <Button variant="contained" color="primary">
+                                Order
+                            </Button>
+                            </Grid>
+                            <Grid item>
+                            <Button variant="outlined" color="primary">
+                                Voice Assisstant
+                            </Button>
+                            </Grid>
+                        </Grid>
+                        </div>
+                    </Container>
+                    </div>
+                </main>
+              </Navbar>
+              <Container className={classes.cardGrid} maxWidth="md">
+                <Grid container spacing={4}>
+                  <Card className={classes.card}>
+                    <CardActionArea>
+                      <CardMedia
+                        className={classes.media}
+                        image="/static/images/cards/contemplative-reptile.jpg"
+                        title="Contemplative Reptile"
+                      />
+                      <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
+                          Cheese Pie
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                          16 inch Pie (8 slices) 
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                          $ 15
+                        </Typography>
+                      </CardContent>
+                    </CardActionArea>
+                    <CardActions>
+                      <Button size="small" color="primary">
+                        Add to Cart
+                      </Button>
+                    </CardActions>
+                    <CardActionArea>
+                      <CardMedia
+                        className={classes.media}
+                        image="/static/images/cards/contemplative-reptile.jpg"
+                        title="Contemplative Reptile"
+                      />
+                      <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
+                          Pepperoni Pie
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                          16 inch Pie (8 slices) 
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                          $ 17
+                        </Typography>
+                      </CardContent>
+                    </CardActionArea>
+                    <CardActions>
+                      <Button size="small" color="primary">
+                        Add to Cart
+                      </Button>
+                    </CardActions>
+                    <CardActionArea>
+                      <CardMedia
+                        className={classes.media}
+                        image="/static/images/cards/contemplative-reptile.jpg"
+                        title="Contemplative Reptile"
+                      />
+                      <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
+                          Chicken Parmigiana
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                          10 inch Hero
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                          $ 10
+                        </Typography>
+                      </CardContent>
+                    </CardActionArea>
+                    <CardActions>
+                      <Button size="small" color="primary">
+                        Add to Cart
+                      </Button>
+                    </CardActions>
+                    <CardActionArea>
+                      <CardMedia
+                        className={classes.media}
+                        image="/static/images/cards/contemplative-reptile.jpg"
+                        title="Contemplative Reptile"
+                      />
+                      <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
+                          Calzone
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                          Chicken Calzone
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                          $ 8
+                        </Typography>
+                      </CardContent>
+                    </CardActionArea>
+                    <CardActions>
+                      <Button size="small" color="primary">
+                        Add to Cart
+                      </Button>
+                    </CardActions>
+                    <CardActionArea>
+                      <CardMedia
+                        className={classes.media}
+                        image="/static/images/cards/contemplative-reptile.jpg"
+                        title="Contemplative Reptile"
+                      />
+                      <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
+                          Garlic Knots
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                          4 Garlic Knots 
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                          $ 3
+                        </Typography>
+                      </CardContent>
+                    </CardActionArea>
+                    <CardActions>
+                      <Button size="small" color="primary">
+                        Add to Cart
+                      </Button>
+                    </CardActions>
+                    <CardActionArea>
+                      <CardMedia
+                        className={classes.media}
+                        image="/static/images/cards/contemplative-reptile.jpg"
+                        title="Contemplative Reptile"
+                      />
+                      <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
+                          Coke
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                          2 Liter Soda 
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                          $ 3
+                        </Typography>
+                      </CardContent>
+                    </CardActionArea>
+                    <CardActions>
+                      <Button size="small" color="primary">
+                        Add to Cart
+                      </Button>
+                    </CardActions>
+                  </Card>
+                </Grid>
+              </Container>
+              
           </React.Fragment>  
         );
       }
@@ -270,33 +418,6 @@ class Homepage extends React.Component{
                     <Container className={classes.cardGrid} maxWidth="md">
                     {/* End hero unit */}
                     <Grid container spacing={4}>
-                        {/* {this.state.cards.map((card, key) => (
-                        <Grid item key={this.state.restaurant.menu.items.itemName} xs={12} sm={6} md={4}>
-                            <Card className={classes.card}>
-                            <CardMedia
-                                className={classes.cardMedia}
-                                image="https://source.unsplash.com/random"
-                                title="Image title"
-                            />
-                            <CardContent className={classes.cardContent}>
-                                <Typography gutterBottom variant="h5" component="h2">
-                                Heading
-                                </Typography>
-                                <Typography>
-                                This is a media card. You can use this section to describe the content.
-                                </Typography>
-                            </CardContent>
-                            <CardActions>
-                                <Button size="small" color="primary">
-                                View
-                                </Button>
-                                <Button size="small" color="primary">
-                                Edit
-                                </Button>
-                            </CardActions>
-                            </Card>
-                        </Grid>
-                        ))} */}
                         <Card className={classes.card}>
                             <CardActionArea>
                                 <CardMedia
@@ -390,7 +511,7 @@ class Homepage extends React.Component{
                                 </CardContent>
                             </CardActionArea>
                             <CardActions>
-                                <Button size="small" color="primary" onClick={this.MediaCard}>
+                                <Button size="small" color="primary" onClick={this.loadOrder}>
                                 View Menu
                                 </Button>
                                 {/* <Link to="/order" className="btn btn-primary">View Menu</Link> */}
