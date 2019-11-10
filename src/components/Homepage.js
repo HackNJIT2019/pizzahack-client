@@ -54,6 +54,7 @@ const styles = theme => ({
   },
   cardMedia: {
     paddingTop: '56.25%', // 16:9
+    //paddingBottom: '56.25%'
   },
   cardContent: {
     flexGrow: 1,
@@ -162,7 +163,7 @@ class Homepage extends React.Component{
                         <Grid container spacing={2} justify="center">
                             <Grid item>
                             <Button variant="contained" color="primary">
-                                Menu
+                                Order
                             </Button>
                             </Grid>
                             <Grid item>
@@ -222,8 +223,9 @@ class Homepage extends React.Component{
                         <Card className={classes.card}>
                             <CardActionArea>
                                 <CardMedia
-                                className={classes.media}
-                                image="/images/joes.jpg"
+                                className={classes.cardMedia}
+                                //className={classes.media}
+                                image="https://d2jz4nqvi4omcr.cloudfront.net/customerimages/large/79463_image_5_2019-06-25-17-53-39-000197.jpg"
                                 title="Joe's Pizza"
                                 />
                                 <CardContent>
@@ -247,8 +249,8 @@ class Homepage extends React.Component{
                         <Card className={classes.card}>
                             <CardActionArea>
                                 <CardMedia
-                                className={classes.media}
-                                //image="/images/joes.jpg"
+                                className={classes.cardMedia}
+                                image="https://s3-prod.adage.com/s3fs-public/styles/width_1024/public/20190920_little_Caesers_3x2.jpg"
                                 title="Little Caesar's"
                                 />
                                 <CardContent>
@@ -272,8 +274,8 @@ class Homepage extends React.Component{
                         <Card className={classes.card}>
                             <CardActionArea>
                                 <CardMedia
-                                className={classes.media}
-                                //image="/images/joes.jpg"
+                                className={classes.cardMedia}
+                                image='https://thepizzasnob.files.wordpress.com/2014/12/basiles-outside2-resize.jpg'
                                 title="Basille's Pizza"
                                 />
                                 <CardContent>
@@ -297,8 +299,8 @@ class Homepage extends React.Component{
                         <Card className={classes.card}>
                             <CardActionArea>
                                 <CardMedia
-                                className={classes.media}
-                                //image="/images/joes.jpg"
+                                className={classes.cardMedia}
+                                image="https://slice.seriouseats.com/images/200110601-2bros-slice.jpg"
                                 title="Dollar Pizza"
                                 />
                                 <CardContent>
