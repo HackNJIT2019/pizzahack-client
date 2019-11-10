@@ -17,6 +17,7 @@ import { Link, withRouter } from 'react-router-dom';
 // import ReactPhoneInput from 'react-phone-input-mui';
 //var MuiPhoneNumber = require("material-ui-phone-number")
 import axios from 'axios';
+import { Redirect } from 'react-router-dom'
 
 function Copyright() {
   return (
@@ -63,7 +64,7 @@ class Signin extends React.Component{
         this.state = {
             email: "",
             password:"",
-            signedIn: false,
+            redirect: false,
         };
     }
 
@@ -79,14 +80,15 @@ class Signin extends React.Component{
           password: this.state.password
         }
         let res = await axios.post(apiLink, credentials)
-        if (res) {
-            console.log("good 200")
-          this.setState({
-            signedIn: true,
-          })
+        if (!res.data.success) {
+            alert("Please enter right credentials!")
+            // console.log(res)
         }
         else {
-          console.log("Error")
+            this.setState({
+            redirect: true,
+            })
+          console.log("Successful attempt! ")
         }
     }
 
@@ -97,6 +99,13 @@ class Signin extends React.Component{
     }
 
     render() {
+        //const {  }
+        if (this.state.redirect) {
+            //debugger
+            return(
+                <Redirect to="/main" />
+            )
+        }
     //const { classes } = this.props;
     const { classes} = this.props;
     return (

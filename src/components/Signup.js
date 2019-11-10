@@ -17,6 +17,7 @@ import { Link, withRouter } from 'react-router-dom';
 import ReactPhoneInput from 'react-phone-input-mui';
 //var MuiPhoneNumber = require("material-ui-phone-number")
 import axios from 'axios';
+import {Redirect} from 'react-router-dom'
 
 function Copyright() {
   return (
@@ -65,9 +66,10 @@ class Signup extends React.Component{
         email: "",
         password:"",
         address: "",
+        cash: false,
         contactno: "",
         name: "",
-        signedUp: false,
+        redirect: false,
         error: ""
     };
   }
@@ -77,7 +79,7 @@ class Signup extends React.Component{
   }
 
   handleSubmit = async (event) => {
-    const apiLink = "192.168.43.193:3000/users/signup"
+    const apiLink = "http://192.168.43.193:3000/users/signup"
     event.preventDefault();
     try {
       let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -91,14 +93,23 @@ class Signup extends React.Component{
             password: this.state.password,   
             address: this.state.address,
             contactno: this.state.contactno,
+            cash: this.state.cash,
             name: this.state.name,
           })
           if(res){
-            console.log("RUNNING")
-            this.setState({
-              redirect: true,
-              user: res.data
-            })
+            //debugger
+            console.log("Sign up response   ", res)
+            if(!res.data.success && res.data.err==='User already exists') {
+              this.setState({
+                redirect: true
+              })
+            }
+            else {
+              this.setState({
+                redirect: true,
+                user: res.data
+              })
+            }
           }
       }
   } catch (err) {
@@ -113,6 +124,11 @@ class Signup extends React.Component{
   }
 
   render() {
+    if (this.state.redirect) {
+      return(
+        <Redirect to={"/signin"} />
+      )
+    }
     //const { classes } = this.props;
     const { classes,defaultCountry,} = this.props;
     return (
@@ -127,6 +143,19 @@ class Signup extends React.Component{
           </Typography>
           <form className={classes.form} noValidate>
             <Grid container spacing={2}>
+            <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  //required
+                  fullWidth
+                  name="name"
+                  label="Name"
+                  type="name"
+                  id="name"
+                  autoComplete="current-name"
+                  onChange={this.handleChange('name')}
+                />
+              </Grid>
               <Grid item xs={12}>
                 <TextField
                   variant="outlined"
@@ -160,44 +189,30 @@ class Signup extends React.Component{
                   name="address"
                   label="Address"
                   type="address"
-                  id="adress"
+                  id="address"
                   autoComplete="current-address"
                   onChange={this.handleChange('address')}
                 />
               </Grid>
-              <ReactPhoneInput
-                //value={value}
-                defaultCountry={defaultCountry || 'us'}
-                //onChange={onChange}
-                inputClass={classes.field}
-                dropdownClass={classes.countryList}
-                component={TextField}
-                inputExtraProps={{
-                  margin: 'normal',
-                  autoComplete: 'phone',
-                  name: 'contactno'
-                }}
-                onChange={this.handleChange('contactno')}
-              />
               <Grid item xs={12}>
                 <TextField
                   variant="outlined"
                   //required
                   fullWidth
-                  name="name"
-                  label="Name"
-                  type="name"
-                  id="name"
-                  autoComplete="current-name"
-                  onChange={this.handleChange('name')}
+                  name="contactno"
+                  label="Number"
+                  type="contactno"
+                  id="contactno"
+                  autoComplete="current-contactno"
+                  onChange={this.handleChange('contactno')}
+                />
+              </Grid> 
+              <Grid item xs={12}>
+                <FormControlLabel
+                  control={<Checkbox value="cash" color="primary" />}
+                  label="I want want cash as payment type"
                 />
               </Grid>
-              {/* <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
-              </Grid> */}
             </Grid>
             <Button
               type="submit"
