@@ -94,7 +94,7 @@ class Signup extends React.Component{
 
   handleSubmit = async (event) => {
     const cookies = new Cookies();
-    const apiLink = "http://pizzahack.azurewebsites.net/users/signup"
+    const apiLink = "http://192.168.43.193/users/signup"
     event.preventDefault();
     try {
       let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

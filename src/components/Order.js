@@ -18,7 +18,6 @@ import TextField from '@material-ui/core/TextField';
 import Navbar from '../components/Navbar';
 import axios from 'axios';
 import joes from '../images/joes.jpg';
-import Order from './Order'
 
 function Copyright() {
   return (
@@ -69,8 +68,8 @@ const styles = theme => ({
 }
 });
 
-class Homepage extends React.Component{
-    cards = []
+class Order extends React.Component{
+    //cards = []
     constructor(props) {
         super(props);
         this.state = {
@@ -79,20 +78,20 @@ class Homepage extends React.Component{
                 email: this.props.profile.email,
                 contactno : this.props.profile.contanco
             },
-            restaurant : [{
-                    name: "",
-                    menu: {
-                        items: []
-                    },
-                    location: "",
-                    priceRange: "",
-                    rating: "",
-                    _id: ""
-                }],  
-            query: "",
-            isSearched: false,
-            cards : [],
-            redirectOrder: false
+            restaurant : [
+                    // name: "",
+                    // menu: {
+                    //     items: []
+                    // },
+                    // location: "",
+                    // priceRange: "",
+                    // rating: "",
+                    // _id: ""
+                    this.props.restaurant
+            ],  
+            //query: "",
+            //isSearched: false,
+            cards : [this.props.cards]
         }
     }
 
@@ -103,54 +102,13 @@ class Homepage extends React.Component{
         })
     }
 
-    MediaCard = () => {
-      const {classes} = this.props
-      return (
-        <Card className={classes.card}>
-          <CardActionArea>
-            <CardMedia
-              className={classes.media}
-              image="/static/images/cards/contemplative-reptile.jpg"
-              title="Contemplative Reptile"
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="h2">
-                {this.state.restaurant.menu.items[0].itemName}
-              </Typography>
-              <Typography variant="body2" color="textSecondary" component="p">
-              {this.state.restaurant.menu.items[0].description}
-              </Typography>
-              <Typography variant="body2" color="textSecondary" component="p">
-              {this.state.restaurant.menu.items[0].price}
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-          <CardActions>
-            <Button size="small" color="primary">
-              Share
-            </Button>
-            <Button size="small" color="primary">
-              Learn More
-            </Button>
-          </CardActions>
-        </Card>
-      );
-  }
-
     handleChange = event => ({target}) => {
         this.setState({[event]: target.value});
-    }
-
-    loadOrder = async (event) => {
-      event.preventDefault();
-      this.setState({
-        redirectOrder: true
-      })
-    }
+      }
 
     handleSubmit = async (event) => {
         //const cookies = new Cookies();
-        const apiLink = "http://pizzahack.azurewebsites.net/restaurant/5dc770c41c9d440000339053"
+        const apiLink = "http://192.168.43.193:3000/restaurant/5dc770c41c9d440000339053"
         //event.preventDefault();
         let query = {
           query: this.state.query
@@ -185,40 +143,6 @@ class Homepage extends React.Component{
 
     render() {
         const {classes} = this.props
-        if(this.state.redirectOrder){
-          return (
-            <React.Fragment>
-              <Card className={classes.card}>
-              <CardActionArea>
-                <CardMedia
-                  className={classes.media}
-                  image="/static/images/cards/contemplative-reptile.jpg"
-                  title="Contemplative Reptile"
-                />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    {this.state.restaurant.menu.items[0].itemName}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary" component="p">
-                  {this.state.restaurant.menu.items[0].description}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary" component="p">
-                  {this.state.restaurant.menu.items[0].price}
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-              <CardActions>
-                <Button size="small" color="primary">
-                  Share
-                </Button>
-                <Button size="small" color="primary">
-                  Learn More
-                </Button>
-              </CardActions>
-            </Card>
-          </React.Fragment>  
-        );
-      }
         if(this.state.isSearched) {
             return(
                 <React.Fragment>
@@ -317,7 +241,7 @@ class Homepage extends React.Component{
                             <CardActions>
                                 <Button size="small" color="primary">
                                 View Menu
-                                </Button>
+                                </Button >
                                 {/* <Button size="small" color="primary">
                                 Learn More
                                 </Button> */}
@@ -390,10 +314,9 @@ class Homepage extends React.Component{
                                 </CardContent>
                             </CardActionArea>
                             <CardActions>
-                                <Button size="small" color="primary" onClick={this.MediaCard}>
+                                <Button size="small" color="primary">
                                 View Menu
                                 </Button>
-                                {/* <Link to="/order" className="btn btn-primary">View Menu</Link> */}
                                 {/* <Button size="small" color="primary">
                                 Learn More
                                 </Button> */}
@@ -478,4 +401,4 @@ class Homepage extends React.Component{
     }
 }
 
-export default withRouter(withStyles(styles)(Homepage))
+export default withRouter(withStyles(styles)(Order))
